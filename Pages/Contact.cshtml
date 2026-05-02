@@ -1,0 +1,57 @@
+﻿@page
+@model ContactModel
+@{
+    ViewData["Title"] = "Contact Me";
+}
+
+<h1>Contact Me</h1>
+
+@if (Model.ShowSuccessMessage)
+{
+    <div class="alert alert-success mt-3">
+        <strong>Thank you @Model.Contact.Name!</strong> Your message has been sent. I'll get back to you soon.
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="mb-3">
+                <label asp-for="Contact.Name" class="form-label"></label>
+                <input asp-for="Contact.Name" class="form-control" />
+                <span asp-validation-for="Contact.Name" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Contact.Email" class="form-label"></label>
+                <input asp-for="Contact.Email" class="form-control" />
+                <span asp-validation-for="Contact.Email" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Contact.Message" class="form-label"></label>
+                <textarea asp-for="Contact.Message" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Contact.Message" class="text-danger"></span>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5 class="card-title">Other ways to reach me</h5>
+                <p><strong>Email:</strong> alex.johnson@example.com</p>
+                <p><strong>GitHub:</strong> github.com/alexjohnson</p>
+                <p><strong>LinkedIn:</strong> linkedin.com/in/alexjohnson</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
